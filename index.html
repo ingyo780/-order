@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>주점 주문 페이지</title>
+  <title>프롬프트 한 잔</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 20px; }
     h2 { color: #b22222; }
@@ -20,10 +20,12 @@
     <label>쿠폰 번호: <input type="text" name="coupon"></label>
 
     <div class="menu">
-      <label>돼김구 (15000원) : <input type="number" name="돼김구" value="0" min="0"></label>
+      <label>돼지김치구이 (15000원) : <input type="number" name="돼지김치구이" value="0" min="0"></label>
       <label>감자전 (9000원) : <input type="number" name="감자전" value="0" min="0"></label>
       <label>버섯전 (9000원) : <input type="number" name="버섯전" value="0" min="0"></label>
-      <label>음료수 (2000원) : <input type="number" name="음료수" value="0" min="0"></label>
+      <label>모히또 (2000원) : <input type="number" name="모히또" value="0" min="0"></label
+      <label>깔루아밀크 (2000원) : <input type="number" name="깔루아밀크" value="0" min="0"></label>
+      <label>블루밀키스 (2000원) : <input type="number" name="블루밀키스" value="0" min="0"></label>
     </div>
 
     <div class="total">총 금액: <span id="totalPrice">0</span> 원</div>
@@ -31,7 +33,7 @@
   </form>
 
   <script>
-    const prices = { "돼김구":15000, "감자전":9000, "팽이전":9000, "모히또":2000, "깔루아밀크":2000,"블루밀키스":2000 };
+    const prices = { "돼지김치구이이":15000, "감자전":9000, "팽이전":9000, "모히또":2000, "깔루아밀크":2000,"블루밀키스":2000 };
     const form = document.getElementById("orderForm");
     const totalPriceEl = document.getElementById("totalPrice");
 
@@ -61,4 +63,5 @@
   </script>
 </body>
 </html>
+
 
