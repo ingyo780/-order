@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>주점 주문 페이지</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h2 { color: #b22222; }
+    label { display:block; margin: 10px 0 5px; }
+    input[type="number"] { width: 60px; }
+    .menu { margin-bottom: 20px; }
+    .total { font-weight:bold; color:darkblue; margin-top: 20px; }
+    button { padding: 10px 15px; margin-top: 20px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>🍺 대학교 주점 주문하기 🍺</h2>
+  <form id="orderForm">
+    <label>테이블 번호: <input type="text" name="table" required></label>
+    <label>쿠폰 번호: <input type="text" name="coupon"></label>
+
+    <div class="menu">
+      <label>돼김구 (15000원) : <input type="number" name="돼김구" value="0" min="0"></label>
+      <label>감자전 (9000원) : <input type="number" name="감자전" value="0" min="0"></label>
+      <label>버섯전 (9000원) : <input type="number" name="버섯전" value="0" min="0"></label>
+      <label>음료수 (2000원) : <input type="number" name="음료수" value="0" min="0"></label>
+    </div>
+
+    <div class="total">총 금액: <span id="totalPrice">0</span> 원</div>
+    <button type="submit">주문하기</button>
+  </form>
+
+  <script>
+    const prices = { "돼김구":15000, "감자전":9000, "팽이전":9000, "모히또":2000, "깔루아밀크":2000,"블루밀키스":2000 };
+    const form = document.getElementById("orderForm");
+    const totalPriceEl = document.getElementById("totalPrice");
+
+    form.addEventListener("input", () => {
+      let total = 0;
+      for(let item in prices){
+        const qty = parseInt(form[item].value) || 0;
+        total += prices[item] * qty;
+      }
+      totalPriceEl.textContent = total.toLocaleString();
+    });
+
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      let orderData = new FormData(form);
+      let result = "📋 주문 내역\n";
+      result += "테이블 번호: " + orderData.get("table") + "\n";
+      if(orderData.get("coupon")) result += "쿠폰 번호: " + orderData.get("coupon")+ "\n";
+      for(let item in prices){
+        let qty = parseInt(orderData.get(item));
+        if(qty > 0) result += `${item} x ${qty}\n`;
+      }
+      result += "총 금액: " + totalPriceEl.textContent + " 원\n";
+      result += "\n💳 계좌번호: (추후 공지)\n";
+      alert(result);
+    });
+  </script>
+</body>
+</html>
